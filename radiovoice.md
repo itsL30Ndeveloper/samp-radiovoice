@@ -4,6 +4,8 @@
 #include <sampvoice>
 #include <sscanf2>
 
+// if you want to make filterscript then you have to define code as filterscript and you must to change OnGameModeInit to OnFilterScriptInit 
+
 #define MAX_RADIOS 9999 //maximum radio frequency channel
 
 new SV_GSTREAM:RadioChannel[MAX_RADIOS] = SV_NULL; 
