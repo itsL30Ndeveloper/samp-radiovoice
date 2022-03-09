@@ -1,5 +1,5 @@
 # **RADIOVOICE**
-English | [Indonesia](https://github.com/itsL30Ndeveloper/samp-radiovoice/README.id.md
+English | [Indonesia](https://github.com/itsL30Ndeveloper/samp-radiovoice/README.id.md)
 
 ## Description
 ---------------------------------
