@@ -24,7 +24,12 @@ public SV_VOID:OnPlayerActivationKeyPress(SV_UINT:playerid, SV_UINT:keyid)
     // Attach the player to the global stream as a speaker if the 'Z' key is pressed
     if (keyid == 0x5A && gstream) SvAttachSpeakerToStream(gstream, playerid);
     // Attach player to radio stream as speaker when 'B' button is pressed
-    if(keyid == 0x42 && FreqNumber[playerid] >= 1) SvAttachSpeakerToStream(RadioChannel[FreqNumber[playerid]], playerid); // You can add animation and sound variations here to enhance the ingame | Animations : https://sampwiki.blast.hk/wiki/Animations | Sounds : https://sampwiki.blast.hk/wiki/Sound_IDs 
+    if(keyid == 0x42 && FreqNumber[playerid] >= 1)
+    {
+        SvAttachSpeakerToStream(RadioChannel[FreqNumber[playerid]], playerid); // You can add animation and sound variations here to enhance the ingame | Animations : https://sampwiki.blast.hk/wiki/Animations | Sounds : https://sampwiki.blast.hk/wiki/Sound_IDs 
+        SetPlayerSpecialAction(playerid,SPECIAL_ACTION_USECELLPHONE); // Animations : Use Radio
+        SetPlayerAttachedObject(playerid,0,19942,6); // Radio Object
+    }
     if(keyid == 0x42 && FreqNumber[playerid] == 0) return;
 }
 
@@ -35,7 +40,12 @@ public SV_VOID:OnPlayerActivationKeyRelease(SV_UINT:playerid, SV_UINT:keyid)
     // Detach the player from the global stream if the 'Z' key is released
     if (keyid == 0x5A && gstream) SvDetachSpeakerFromStream(gstream, playerid);
     // Detach the player from the radio stream if the 'B' key is released
-    if(keyid == 0x42 && FreqNumber[playerid] >= 1) SvDetachSpeakerFromStream(RadioChannel[FreqNumber[playerid]], playerid); // You can add animation and sound variations here to enhance the ingame | Animations : https://sampwiki.blast.hk/wiki/Animations | Sounds : https://sampwiki.blast.hk/wiki/Sound_IDs 
+    if(keyid == 0x42 && FreqNumber[playerid] >= 1)
+    {
+        SvDetachSpeakerFromStream(RadioChannel[FreqNumber[playerid]], playerid); // You can add animation and sound variations here to enhance the ingame | Animations : https://sampwiki.blast.hk/wiki/Animations | Sounds : https://sampwiki.blast.hk/wiki/Sound_IDs 
+        SetPlayerSpecialAction(playerid,SPECIAL_ACTION_USECELLPHONE); // Animations : Use Radio
+        SetPlayerAttachedObject(playerid,0,19942,6); // Radio Object
+    }
     if(keyid == 0x42 && FreqNumber[playerid] == 0) return;
 }
 
@@ -91,20 +101,21 @@ public OnGameModeExit()
 
 CMD:setfreq(playerid, params[])
 {
-	new id;
-	if(sscanf(params, "d", id)) return SendClientMessage(playerid, -1, "Use: /setfreq [frequensi] | 0 = turn off");
+  new id;
+  if(sscanf(params, "d", id)) return SendClientMessage(playerid, -1, "Use: /setfreq [frequensi] | 0 = turn off");
 
-	FreqNumber[playerid] = id;
+  FreqNumber[playerid] = id;
 
-	if(RadioChannel[FreqNumber[id]] == SV_NULL)
-	{
-		RadioChannel[FreqNumber[id]] = SvCreateGStream(0xFF00FFFF, "Radio");
-		SvAttachListenerToStream(RadioChannel[FreqNumber[id]], playerid);
- 	}
- 	else
- 	{
-    	SvAttachListenerToStream(RadioChannel[FreqNumber[id]], playerid);
-	}
-	return 1;
+  if(RadioChannel[FreqNumber[id]] == SV_NULL)
+  {
+    RadioChannel[FreqNumber[id]] = SvCreateGStream(0xFF00FFFF, "Radio");
+    SvAttachListenerToStream(RadioChannel[FreqNumber[id]], playerid);
+  }
+  else
+  {
+      SvAttachListenerToStream(RadioChannel[FreqNumber[id]], playerid);
+  }
+  return 1;
 }
+
 ```
