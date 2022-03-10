@@ -45,7 +45,7 @@ public SV_VOID:OnPlayerActivationKeyRelease(SV_UINT:playerid, SV_UINT:keyid)
     if(keyid == 0x42 && FreqNumber[playerid] >= 1)
     {
         SvDetachSpeakerFromStream(RadioChannel[FreqNumber[playerid]], playerid); // You can add animation and sound variations here to enhance the ingame | Animations : https://sampwiki.blast.hk/wiki/Animations | Sounds : https://sampwiki.blast.hk/wiki/Sound_IDs 
-        SetPlayerSpecialAction(playerid,SPECIAL_ACTION_USECELLPHONE); // Animations : Use Radio
+        SetPlayerSpecialAction(playerid,SPECIAL_ACTION_STOPUSECELLPHONE); // Animations : Stop Use Radio
         SetPlayerAttachedObject(playerid,0,19942,6); // Radio Object
     }
     if(keyid == 0x42 && FreqNumber[playerid] == 0) return;
